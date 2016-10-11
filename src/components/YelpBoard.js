@@ -1,5 +1,6 @@
 import  React, { Component } from 'react';
 import YelpStore from '../stores/YelpStore';
+import YelpAction from '../actions/YelpAction';
 
 export default class YelpBoard extends Component {
   constructor() {
@@ -8,6 +9,8 @@ export default class YelpBoard extends Component {
       infos: YelpStore.getAllInfos()
     }
     this._onChange = this._onChange.bind(this);
+    this.favorite = this.favorite.bind(this);
+    this.unFavorite = this.unFavorite.bind(this);
   }
 
   componentWillMount() {
@@ -22,6 +25,15 @@ export default class YelpBoard extends Component {
     this.setState({infos: YelpStore.getAllInfos()});
   }
 
+  favorite(business) {
+    console.log('business:', business);
+    YelpAction.favorite(business);
+  }
+
+  unFavorite(business) {
+    YelpAction.unFavorite(business);
+  }
+
   render() {
     let { infos } = this.state;
     let infoDiv;
@@ -29,7 +41,7 @@ export default class YelpBoard extends Component {
       let { businesses } = infos;
       if( businesses ) {
         infoDiv = businesses.map((business, index) => {
-          let { name, rating_img_url, location, image_url} = business;
+          let { name, rating_img_url, location, image_url } = business;
           let {city, display_address} = location;
           let address = display_address.map( a => {
             return <p key = {a}>{a}</p>
@@ -43,12 +55,11 @@ export default class YelpBoard extends Component {
                 <hr/>
                 <div>
                   <p>{name}</p>
-                  <div>
-
-                  </div>
                   <p><img src={rating_img_url}/></p>
                   <p>{city}</p>
                   {address}
+                  <button className="btn btn-xs btn-danger" onClick={()=>this.favorite(business)}><i className="glyphicon glyphicon-heart"></i></button>
+                  <button className="btn btn-xs btn-default" onClick={()=>this.unFavorite(business)}><i className="glyphicon glyphicon-heart-empty"></i></button>
                 </div>
               </div>
             </div>

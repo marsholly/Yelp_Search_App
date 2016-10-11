@@ -10,7 +10,6 @@ export default class YelpBoard extends Component {
     }
     this._onChange = this._onChange.bind(this);
     this.favorite = this.favorite.bind(this);
-    this.unFavorite = this.unFavorite.bind(this);
   }
 
   componentWillMount() {
@@ -26,12 +25,14 @@ export default class YelpBoard extends Component {
   }
 
   favorite(business) {
-    console.log('business:', business);
-    YelpAction.favorite(business);
-  }
-
-  unFavorite(business) {
-    YelpAction.unFavorite(business);
+    let { name, rating_img_url, location, image_url } = business;
+    let businessObj = {
+      name,
+      rating_img_url,
+      location,
+      image_url
+    }
+    YelpAction.favorite(businessObj);
   }
 
   render() {
@@ -59,7 +60,6 @@ export default class YelpBoard extends Component {
                   <p>{city}</p>
                   {address}
                   <button className="btn btn-xs btn-danger" onClick={()=>this.favorite(business)}><i className="glyphicon glyphicon-heart"></i></button>
-                  <button className="btn btn-xs btn-default" onClick={()=>this.unFavorite(business)}><i className="glyphicon glyphicon-heart-empty"></i></button>
                 </div>
               </div>
             </div>

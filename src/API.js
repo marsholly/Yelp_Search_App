@@ -8,6 +8,12 @@ const API = {
       .then(ServerAction.recieveAllInfos)
       .catch(console.error)
   },
+  searchBusiness(yelpId) {
+    axios.get(`/yelp/business/${yelpId}`)
+      .then(res => res.data)
+      .then(ServerAction.recieveAllInfos)
+      .catch(console.error)
+  }
 }
 
 export default API;

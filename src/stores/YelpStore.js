@@ -13,7 +13,6 @@ class YelpStore extends EventEmitter {
           _infos = action.payload.infos;
           this.emit('CHANGE');
           break;
-
       }
     })
   }
@@ -29,6 +28,7 @@ class YelpStore extends EventEmitter {
   getAllInfos() {
     return _infos;
   }
+
 }
 
 export default new YelpStore();

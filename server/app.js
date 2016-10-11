@@ -34,9 +34,9 @@ app.get('/yelp/:term/:location', (req, res) => {
   });
 });
 
-app.get('/yelp/business/:name',(req, res) => {
-  let { name } = req.params;
-  YelpSearch.getAllBusiness(name, (err, business) => {
+app.get('/yelp/business/:id',(req, res) => {
+  let { id } = req.params;
+  YelpSearch.getAllBusiness(id, (err, business) => {
     if(err) return res.status(400).send(err);
     res.send(business);
   });

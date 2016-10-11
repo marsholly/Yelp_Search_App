@@ -5,6 +5,9 @@ const YelpAction = {
   searchInfos(term, location) {
     API.searchInfos(term, location)
   },
+  searchBusiness(yelpId) {
+    API.searchBusiness(yelpId)
+  },
   favorite(business) {
     AppDispatcher.dispatch({
       type:'FAVORITE',

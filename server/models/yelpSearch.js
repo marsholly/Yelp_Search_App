@@ -13,8 +13,8 @@ exports.getAllInfos = (term, location, cb) => {
     .catch(console.error)
 }
 
-exports.getAllBusiness = (name, cb) => {
-  yelp.business(name)
+exports.getAllBusiness = (id, cb) => {
+  yelp.business(id)
     .then(data => cb(null, data))
     .catch(console.error)
 }

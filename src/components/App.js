@@ -9,6 +9,7 @@ export default class App extends Component {
       <MuiThemeProvider>
         <div className="container">
           <SearchBar />
+          <hr/>
           <YelpBoard />
         </div>
       </MuiThemeProvider>

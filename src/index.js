@@ -1,12 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
+import Welcome from './components/Welcome';
+import Navbar from './components/Navbar';
 import App from './components/App';
-
-injectTapEventPlugin();
+import FavoriteYelp from './components/FavoriteYelp';
 
 render(
-  <App />,
+  <Router history={browserHistory}>
+    <Route path='/' component={Navbar}>
+      <IndexRoute component={Welcome}></IndexRoute>
+      <Route path='search' component={App} />
+      <Route path='favorite' component={FavoriteYelp} />
+    </Route>
+  </Router>,
   document.getElementById('root')
 )
